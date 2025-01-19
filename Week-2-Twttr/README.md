@@ -1,7 +1,9 @@
+---
 title: "Just setting up my twttr - CS50's Introduction to Programming with Python"
 source: https://cs50.harvard.edu/python/2022/psets/2/twttr/
-date: 2025-01-19 12:09
-tags:
+date: 2025-01-19 12:11
+tags: []
+---
 
 
 [source](https://cs50.harvard.edu/python/2022/psets/2/twttr/)
@@ -22,8 +24,8 @@ Hints
 - Much like a `list`, a `str` is "iterable," which means you can iterate over each of its characters in a loop. For instance, if `s` is a `str`, you could print each of its characters, one at a time, with code like:
 
 
-        for c in s:
-            print(c, end="")
+      for c in s:
+          print(c, end="")
 
 
   [2]: https://docs.python.org/3/library/stdtypes.html#string-methods
@@ -61,19 +63,19 @@ Here's how to test your code manually:
 - Run your program with `python twttr.py`. Type `Twitter` and press Enter. Your program should output:
 
 
-        Twttr
+      Twttr   
 
 
 - Run your program with `python twttr.py`. Type `What's your name?` and press Enter. Your program should output:
 
 
-        Wht's yr nm?
+      Wht's yr nm?
 
 
 - Run your program with `python twttr.py`. Type `CS50` and press Enter. Your program should output
 
 
-        CS50
+      CS50
 
 
 You can execute the below to check your code using `check50`, a program that CS50 will use to test your code when you submit. But be sure to test it yourself as well!
