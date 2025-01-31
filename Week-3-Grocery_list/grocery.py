@@ -1,22 +1,34 @@
-full_dict = {}
+# global variable ensures its in scope for all functions
+FULL_SHOPPING_DICT = {}
 
 def main():
+    global FULL_SHOPPING_DICT
     while True:
         try:
             item = input("Item : ").strip()
-            shopping = add_to_list(item)
+            add_to_list(item)
+            print(FULL_SHOPPING_DICT)
+        # KeyboardInterrupt is not for cs50, but for my local VScode. Since the EOFError did not work...
         except (EOFError, KeyboardInterrupt):
-            print(shopping)
+            # new line before we print the list for aestetics
+            print()
+            # using .items to get both key and value, since without it will only return key.
+            # This is cool. We can use "sorted(dict.items())" to sort by key and itterate both key and value
+            for item, numbers in  sorted(FULL_SHOPPING_DICT.items()):
+                print(numbers, item.upper())
             break
-    return
+                
+
 
 def add_to_list(item):
-    global full_dict
-    if item in full_dict:
-        full_dict[item] += 1
+    global FULL_SHOPPING_DICT
+    if item in FULL_SHOPPING_DICT:
+        # Remember, to modify dicts we use [], not {}.
+        FULL_SHOPPING_DICT[item] += 1
+        return FULL_SHOPPING_DICT
     else:
-        full_dict[item] = 1
+        FULL_SHOPPING_DICT[item] = 1
+        return FULL_SHOPPING_DICT
 
     
-
 main()
