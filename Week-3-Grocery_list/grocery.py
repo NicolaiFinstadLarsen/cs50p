@@ -5,9 +5,9 @@ def main():
     global FULL_SHOPPING_DICT
     while True:
         try:
-            item = input("Item : ").strip()
+            item = input("Item : ").strip().lower()
             add_to_list(item)
-            print(FULL_SHOPPING_DICT)
+            # print(FULL_SHOPPING_DICT)
         # KeyboardInterrupt is not for cs50, but for my local VScode. Since the EOFError did not work...
         except (EOFError, KeyboardInterrupt):
             # new line before we print the list for aestetics
@@ -15,10 +15,10 @@ def main():
             # using .items to get both key and value, since without it will only return key.
             # This is cool. We can use "sorted(dict.items())" to sort by key and itterate both key and value
             for item, numbers in  sorted(FULL_SHOPPING_DICT.items()):
+                # Upper for the pset spec
                 print(numbers, item.upper())
             break
                 
-
 
 def add_to_list(item):
     global FULL_SHOPPING_DICT
