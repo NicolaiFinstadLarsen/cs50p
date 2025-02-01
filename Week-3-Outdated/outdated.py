@@ -6,12 +6,13 @@ There is no reprompt when incorrect input is given.
 
 
 def main():
-    full_date = input("Date: ").replace(",", "")
+    # full_date = input("Date: ").replace(",", "")
     # full_date = "9/8/1988"
-    # full_date = "september 8, 1988".replace(",", "")
+    full_date = "september 8, 1988".replace(",", "")
+    print(full_date)
     try:
         month, day, year = full_date.strip().split("/")
-        # print(month,day,year)
+        print(month)
     except Exception:
         try:
             month, day, year = full_date.split(" ")
@@ -20,7 +21,7 @@ def main():
 
     # Strictly not nessessary with two lines, but more readable to me.
     fday, fmonth, fyear = format_date(day, month, year)
-    print(f"{fyear}-{fmonth}-{fday}")
+    print(f"{fyear}-{fmonth:02}-{fday:02}")
 
 
 
@@ -41,14 +42,7 @@ def format_date(day, month, year):
         ]
 
     if month in months_of_the_year:
-        # print(f"Test 1")
-        return year, month, day
-    # This part is triggered if month is a number
-    else:
         count = 0
-        # TODO I am trying to compare the i in range of list of moths with the string month from input. Thats not how i saw it in my head.
-        # print(f"Test 2 {year}-{month}-{day}")
-        return year, month, day
         # To itterate over over the list and compare with int we need a range.
         for i in months_of_the_year:
             print(f"test 3 i = {i}")
@@ -60,6 +54,14 @@ def format_date(day, month, year):
                 return year, count, day
             else:
                 count += 1
+        # print(f"Test 1")
+            return year, month, day
+    # This part is triggered if month is a number
+    else:
+        # TODO I am trying to compare the i in range of list of moths with the string month from input. Thats not how i saw it in my head.
+        # print(f"Test 2 {year}-{month}-{day}")
+        return day, month, year
+
 
 
 
