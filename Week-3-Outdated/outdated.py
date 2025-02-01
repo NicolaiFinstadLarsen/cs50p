@@ -23,8 +23,12 @@ def main():
     full_date = input("Date: ").replace(",", "").replace("/"," ").split(" ")
     # full_date = "9/8/1988".replace(",", "").replace("/"," ").split(" ")
     # full_date = "september 8, 1988".replace(",", "").replace("/"," ").split(" ")
-
-    month, day, year = full_date
+    while True:
+        try:
+            month, day, year = full_date
+            break
+        except Exception:
+                full_date = input("Date: ").replace(",", "").replace("/"," ").split(" ")
     # This was the missing piece! 
     month = month.title()
     # print(f"Month after the split in to 3 variables: {month}")
