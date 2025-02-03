@@ -20,20 +20,25 @@ MONTHS_OF_THE_YEAR = [
 
 
 def main():
-    full_date = input("Date: ").replace(",", "").replace("/"," ").split(" ")
-    # full_date = "9/8/1988".replace(",", "").replace("/"," ").split(" ")
-    # full_date = "september 8, 1988".replace(",", "").replace("/"," ").split(" ")
+    global MONTHS_OF_THE_YEAR
+    full_date = input("Date: ").replace(",", "").replace("/"," ").split(" ") #Why not?
+    # full_date = "9/8/1988".replace(",", "").replace("/"," ").split(" ").strip() #Why not?
+    # full_date = "september 8, 1988".replace(",", "").replace("/"," ").split(" ").strip() #Why not?
     while True:
         try:
             month, day, year = full_date
             break
         except Exception:
-                full_date = input("Date: ").replace(",", "").replace("/"," ").split(" ")
+                main()
     # This was the missing piece! 
     month = month.title()
-    # print(f"Month after the split in to 3 variables: {month}")
+    
+    #print(f"Month after the split in to 3 variables: {month}")
 
     fday, fmonth, fyear = format_date(day, month, year)
+    if fday == None or fmonth == None or fyear == None:
+        main()
+
 
     print(f"{fyear}-{fmonth:02}-{fday:02}")
 
@@ -46,22 +51,17 @@ def find_month_int(month):
         # Looks like the == does not work as expected here..
         # 
         if month == MONTHS_OF_THE_YEAR[i]:
-            # print(f"Return value: {i+1}")
+            print(f"Return value: {i+1}")
             return i + 1
 
 
-
-
 def format_date(day, month, year):
-    '''
-    I can do some of the main function in this fuction.
-    To much is happening i main at the moment
-    '''
+    print(f"Format_date day: {day}")
+    print(f"Format_date month: {month}")
     try:
         fday = int(day)
-    # TODO reprompt for wrong input...
     except ValueError:
-        main()
+        return
     try:
         fmonth = int(month)
     except ValueError:
@@ -71,7 +71,6 @@ def format_date(day, month, year):
         month_by_int = find_month_int(month)
         # print(f"After function call: {month_by_int}")
         fmonth = month_by_int
-    # fmonth is none here. What happened?
     fyear = int(year)
 
     return fday, fmonth, fyear
