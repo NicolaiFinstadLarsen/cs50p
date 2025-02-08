@@ -13,90 +13,56 @@ import sys
 correct_count = 0
 level = 0
 ROUNDS_OF_QUESTION = 10
+CORRECT_LEVELS = [1,2,3]
 
 def main():
-    global correct_count
-    global ROUNDS_OF_QUESTION
-    error_count = 0
-    
-    x,y=get_level()
+    formated_level = get_level()
+    generate_integer(formated_level)
 
+
+def get_level():
     while True:
         try:
-            answer = int(input("Answer: "))
+            level = int(input("Level: "))
+            if level not in CORRECT_LEVELS:
+                continue
+            else:
+                return level
         except ValueError:
             continue
 
-        # This whole wrong answer check should be in a separate func or loop so i can do three checks before moving on
-        while True:
-            if answer != x+y:
-                print("EEE")
-                error_count +=1
-                # print(f"Error count: {error_count}")
-                if error_count == 3:
-                    print(f"{x} + {y} = {x+y}")
-                    sys.exit(0)
-                
-                # print(f"Error count {error_count}")
-                answer = int(input("Answer: "))
-
-            elif answer == x+y:
-                # print("correct")
-                correct_count += 1
-                if correct_count == ROUNDS_OF_QUESTION:
-                    print(f"Score {correct_count-error_count}")
-                break
-
-        # Count to 3 to make it do next
-        # Also do 10 qestions at a time
-        if correct_count < ROUNDS_OF_QUESTION:
-            x,y = get_level()
-            continue
-        else:
-            sys.exit(0)
-            
-
-def get_level():
-    global correct_count
-    global level
-
-    while True:
-        if correct_count == 0:
-            try:
-                level = int(input("Level: "))
-            except ValueError:
-                continue
-
-        if level in range(1,4):
-            x, y = generate_integer(level)
-            break
-        else:
-            continue
-    return x,y
-
 
 def generate_integer(level):
+    global correct_count
+    while True:
+        tries = 0
+        for i in range(ROUNDS_OF_QUESTION):
+            x = random.randint(10**level/10, 10**level-1)
+            y = random.randint(10**level/10, 10**level-1)
+            print(f"{x} + {y} = ")
+            while True:
+                try:
+                    answer = int(input())
+                except ValueError:
+                    continue
+                if answer == x+y:
+                    correct_count += 1
+                    break
+                else:
+                    print("EEE")
+                    tries += 1
+                if tries == 3:
+                    print(f"{x} + {y} = {x+y}")
+                    sys.exit()
+                else:
+                    continue
+        print(f"Score: {correct_count-tries}")
+        break
+                
 
 
-    if level == 1:
-        x = random.randint(0,10**level-1)
-        y = random.randint(0,10**level-1)
 
 
-    elif level == 2:
-        x = random.randint(10,10**level-1)
-        y = random.randint(10,10**level-1)
-
-
-    elif level == 3:
-        x = random.randint(100,10**level-1)
-        y = random.randint(100,10**level-1)
-
-    else:
-        raise ValueError
-
-    print(f"{x} + {y}")
-    return x,y
 
     
 if __name__ == "__main__":
