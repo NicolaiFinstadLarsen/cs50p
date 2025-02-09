@@ -11,7 +11,7 @@ def main():
             num_of_bitcoin = float(sys.argv[1])
             # print(type(x))
         except ValueError:
-            sys.exit(2)
+            sys.exit(1) # Changed from 2 too 1 for check50
             
     if int(num_of_bitcoin):
         price = get_price(num_of_bitcoin)

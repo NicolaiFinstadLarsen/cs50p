@@ -10,8 +10,6 @@ def main():
 
     price = (content["bpi"]["USD"]["rate"])
     price = float(price.replace(",",""))
-    # price = float(price)
-    # price = f"{price:,d}"
     print(f"{price:,.4f}")
 
 
