@@ -8,15 +8,19 @@ def main():
         sys.exit(1)
     else:
         try:
-            x = float(sys.argv[1])
+            num_of_bitcoin = float(sys.argv[1])
             # print(type(x))
         except ValueError:
             sys.exit(2)
-    price = get_price(x)
-    # if price:
-    print(price)
-    # else:
-        # sys.exit(3)
+            
+    if int(num_of_bitcoin):
+        price = get_price(num_of_bitcoin)
+        # if price:
+        print(f"${price:,.4f}")
+        # else:
+            # sys.exit(3)
+    else:
+        sys.exit(3)
 
 def get_price(n):
 
@@ -29,13 +33,12 @@ def get_price(n):
     price = (content["bpi"]["USD"]["rate"])
     price = price.replace(",","")
     price = float(price)
-    format_price = f"{price:,.4f}"
-
     # Might need to return this variable and format later 
     
-    print(price)
+    # print(type(price))
+    # print(type(n))
 
-    # return format_price * n
+    return price * n
         
 '''
 To check error code in powershell use:
