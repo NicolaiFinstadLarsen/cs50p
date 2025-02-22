@@ -1,6 +1,5 @@
 # Re-requesting a Vanity Plate
 
-<iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="border" data-video="" src="">https://www.youtube.com/embed/mQZmCJUSC6g?modestbranding=0&rel=0&showinfo=0"[]%%
 
 In a file called `plates.py`, reimplement [Vanity Plates][1] from [Problem Set 2][2], restructuring your code per the below, wherein `is_valid` still expects a `str` as input and returns `True` if that `str` meets all requirements and `False` if it does not, but `main` is only called if the value of `__name__` is `"__main__"`:
 
