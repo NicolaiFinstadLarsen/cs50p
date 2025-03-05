@@ -31,4 +31,5 @@ def make_table(file_name):
     return (tabulate(dict_list, headers="keys", tablefmt="grid"))
 
 
-main()
+if __name__ == "__main__":
+    main()
