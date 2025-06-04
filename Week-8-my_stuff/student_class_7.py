@@ -6,7 +6,8 @@ class Student:
     def __str__(self):
         return f"{self.name} from {self.house}"
     
-    @classmethod # På denne måten initializer vi Student objektet i student class'en internt.
+    @classmethod # Vi kan kalle methoden på klassen og ikke objektet
+    # Classmoethods tar normalt cls. Dette gjør at vi kan jobbe på selve klassen eller nye instancer.
     def get(cls):
         name = input("Name: ")
         house = input("House: ")
@@ -14,8 +15,10 @@ class Student:
 
 
 def main():
-    student = Student.get() # På denne måten fjerner vi studentlogikken fra main til Student class
+    student = Student.get() # Vi flytter logikken for å opprette en Student fra main til Student-klassen.
+
     print(student)
+
 
 if __name__ == "__main__":
     main()
