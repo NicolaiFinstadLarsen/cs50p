@@ -23,8 +23,13 @@ class Professor(Wizard):
         # self.name = name
         self.subject = subject
 
+    def __str__(self):
+        return f"{self.name} is teaching {self.subject}"
+
     ...
 
 wizard = Wizard("Albus")
 student = Student("Harry", "Gryffindor")
 professor = Professor("Sverus", "Defense Against The Black Arts")
+
+print(professor)
