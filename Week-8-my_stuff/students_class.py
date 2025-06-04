@@ -9,8 +9,8 @@ def main():
 
 def get_student():
     student = Student() # Intitialize the object (intstance) student in the class Student
-    student.name = input("Name: ")
-    student.house = input("House: ")
+    student.name = input("Name: ") # instance variable
+    student.house = input("House: ") # instance variable
     return student # Returns a student to the class Student
 
 
