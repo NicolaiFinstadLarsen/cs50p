@@ -2,17 +2,31 @@ class Student:
     def __init__(self, name, house):
         if not name: 
             raise ValueError("Not working")
-        if house not in ["oslo", "bergen", "trondheim"]:
-            raise ValueError("Not a city")
         self.name = name
         self.house = house
 
     def __str__(self):
         return f"{self.name} from {self.house}"
+    
+    # Getter
+    @property
+    def house(self):
+        return self._house
+    
+    # Setter
+    # Vi kan ikke nå skrive student.house = "Kristiansand" i koden 
+    # student.house kjører denne setter koden
+    # Dette er en failsafe for at kode ikke skal endres uten av man ønsker det.
+    @house.setter
+    def house(self, house):
+        if house not in ["oslo", "bergen", "trondheim"]:
+            raise ValueError("Invalid House")
+        self._house = house
 
 
 def main():
     student = get_student()
+    # student.house = "Kristiansand" # Denne kan ikke lenger brukes.
     print(student)
 
 
