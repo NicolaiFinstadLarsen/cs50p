@@ -1,7 +1,5 @@
 class Student:
     def __init__(self, name, house):
-        if not name: 
-            raise ValueError("Not working")
         self.name = name
         self.house = house
 
@@ -10,8 +8,20 @@ class Student:
     
     # Getter
     @property
+    def name(self):
+        return self._name
+
+    # Getter
+    @property
     def house(self):
         return self._house
+    
+    #Setter
+    @name.setter
+    def name(self, name):
+        if not name:
+            raise ValueError("No name input")
+        self._name = name
     
     # Setter
     # Vi kan ikke nå skrive student.house = "Kristiansand" i koden 
@@ -27,6 +37,7 @@ class Student:
 def main():
     student = get_student()
     # student.house = "Kristiansand" # Denne kan ikke lenger brukes.
+    # student._house = "Kristiansand" # Denne virker fortsatt da..
     print(student)
 
 
