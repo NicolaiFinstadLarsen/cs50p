@@ -1,7 +1,8 @@
 class Student:
-    def __init__(self, name, house):
+    def __init__(self, name, house): # This is a method (a function inside a class)
         self.name = name
         self.house = house
+        self.house = self.house+" hi" # Changing the object we created
 
 
 def main():
