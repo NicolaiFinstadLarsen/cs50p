@@ -92,3 +92,11 @@ I need to format my x axis.
 In the end I found a pandas function that I could use to both format a column to include both date and the time of day, aswell as format the order of the date and time, and fill the time to always have 4 digits. 
 
 # Thats it
+
+Or, it's not. Unittesting!
+
+## PyTest
+
+For unittesting with pandas I again had to do some research. 
+What I learned is that the easiest is to just make a sample dataframe to use in tests and assert what is expected from the function, just with alot smaller dataframes. 
+
