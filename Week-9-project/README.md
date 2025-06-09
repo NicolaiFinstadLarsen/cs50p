@@ -46,3 +46,7 @@ The other solutions, even though I could split it into separate functions, wrote
 
 I also use the price of the open candle from first signal crossover, this I think makes the sens. But I need to think about that.
 
+Next I need to calculate how much money the positions made or lost.
+
+## Calculating PnL per trade
+
