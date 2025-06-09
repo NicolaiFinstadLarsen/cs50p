@@ -67,3 +67,19 @@ I now have access to all the PnL numbers I need. I think...
 
 ## Visualize
 
+From my research I wanted to use matplotlib for visualizing. I understood that pandas does have som plotting capablilites, but I want to learn matplotlib anyway, so no such time as the present to get it started. 
+
+Never mind, I have not calculated the PnL at all. I have found the point delta, but I have no variable for dollar per point of movement and no variable for number of contracts traded...
+
+## Back to PnL
+
+Luckely, I've take steps to make my code modular and the implementation was quickly done.
+
+Back to matplotlib
+
+## Matplotlib
+
+I realize that if I want to visualize something financial, a graph is probably the best way to do it. 
+And in that I knew that I had some work to do, the date in my dataframe has not been used, and it is useless in the format its currently in. So datetime library maybe?
+
+Ah, and I now realize I have not taken into consideration commissions. Well, its an easy fix, and I really want to do some plotting, so Ill get to it later.

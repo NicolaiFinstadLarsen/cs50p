@@ -1,24 +1,25 @@
 import pandas as pd
+import matplotlib as plt
 
 
 def main():
     position = 0
     read_file = "ENQ2023Z_1min.csv"
     df = format_df(read_file)
-    short_period, long_period, starting_cash = ajustable_variables()
+    short_period, long_period, starting_cash, dollar_per_point, num_of_contracts = ajustable_variables()
     df = calculate_sma_window(df, short_period, long_period)
     df = get_signal(df)
     df, position = take_position(df, position)
-    df, long_pnl, short_pnl, long_total, short_total, grand_total, equity = account_equity(df, starting_cash)
+    df, long_pnl, short_pnl, long_total, short_total, grand_total, equity = account_equity(df, starting_cash, dollar_per_point, num_of_contracts)
     visualisation(df, long_pnl, short_pnl, long_total, short_total, grand_total, equity)
     export(df)
     
 
 
 def format_df(file):
-    df = pd.read_csv(file, names=["Contract", "date", "time", "open", 
+    df = pd.read_csv(file, names=["contract", "date", "time", "open", 
                                                 "high", "low", "close", "no_need", 
-                                                "volume"])
+                                                "volume", "equity"])
     df = df.drop(columns="no_need")
 
     return df
@@ -26,9 +27,11 @@ def format_df(file):
 
 def ajustable_variables():
     short_period = 2
-    long_period = 10
+    long_period = 14
     starting_account = 10_000
-    return short_period, long_period, starting_account
+    dollar_per_point = 20
+    num_of_contracts = 1
+    return short_period, long_period, starting_account, dollar_per_point, num_of_contracts
 
 
 def calculate_sma_window(df, short_period, long_period):
@@ -81,13 +84,16 @@ def take_position(df, position):
     return df, position
 
 
-def account_equity(df, starting_account):
+def account_equity(df, starting_account, dollar_per_point, num_of_contracts):
     long_entry = None
     long_exit = None
     short_entry = None
     short_exit = None
+    equity = starting_account
     long_pnl = []
     short_pnl = []
+
+    df["equity"] = equity # Filling equity with starting balance
 
     for i in range(1, len(df)):
 
@@ -104,15 +110,18 @@ def account_equity(df, starting_account):
             short_exit = df.at[i, "exit_price"]
         
         if long_entry is not None and long_exit is not None:
-            pnl_1 = long_exit - long_entry
+            pnl_1 = (long_exit - long_entry) * dollar_per_point * num_of_contracts
             long_pnl.append(pnl_1)
             long_entry = None
             long_exit = None
         elif short_entry is not None and short_exit is not None:    
-            pnl_2 = short_entry - short_exit
+            pnl_2 = (short_entry - short_exit) * dollar_per_point * num_of_contracts
             short_pnl.append(pnl_2)
             short_entry = None
             short_exit = None
+        
+        running_equity = sum(long_pnl) + sum(short_pnl) + starting_account
+        df.at[i, "equity"] = running_equity
 
     long_total = sum(long_pnl)
     short_total = sum(short_pnl)
@@ -120,8 +129,6 @@ def account_equity(df, starting_account):
     equity = starting_account + grand_total
 
     return df, long_pnl, short_pnl, long_total, short_total, grand_total, equity
-
-    
 
 
 def visualisation(df, long_pnl, short_pnl, long_total, short_total, grand_total, equity):
@@ -134,6 +141,7 @@ def visualisation(df, long_pnl, short_pnl, long_total, short_total, grand_total,
     print(f"{grand_total=}")
     print(f"{equity=}")
 
+    # plt.plot(df["date"], grand_total)
 
 
 def export(df):
