@@ -1,5 +1,5 @@
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 
 def main():
@@ -141,7 +141,9 @@ def visualisation(df, long_pnl, short_pnl, long_total, short_total, grand_total,
     print(f"{grand_total=}")
     print(f"{equity=}")
 
-    # plt.plot(df["date"], grand_total)
+    plt.plot(df["time"], df["equity"])
+    plt.title("Equity curve")
+    plt.show()
 
 
 def export(df):

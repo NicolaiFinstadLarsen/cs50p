@@ -83,3 +83,6 @@ I realize that if I want to visualize something financial, a graph is probably t
 And in that I knew that I had some work to do, the date in my dataframe has not been used, and it is useless in the format its currently in. So datetime library maybe?
 
 Ah, and I now realize I have not taken into consideration commissions. Well, its an easy fix, and I really want to do some plotting, so Ill get to it later.
+
+I am plotting something, and I figuered I could just use time, not date. But that did not work.
+I need to format my x axis.
