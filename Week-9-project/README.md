@@ -28,3 +28,21 @@ The reason: I'm not looking to make a profit, I just want to learn Pandas.
 I found a datafile I want to use. And I learned how to make a dataframe and print the head and a sample of the dataframe. I can see that there is no headers on the data so I want to make some.
 
 I ended up using the name= argument in the .read method.    
+
+## Calculating the SMA
+
+SMA is short for simple moving average. And is really just the average price over a period choosen by the user. I want to use the close price of the dataframe to calculate my SMA's.
+
+I would need two SMA's. One short and one long for this strategy. 
+
+Calculating these I found the rolling method which is perfect for this usecase. 
+
+## Entering and exiting the marked
+
+I wanted to have a function for both enter long and exit long, as well for enter short and exit short. 
+But even though I tried alot of different solutions, in the end the problem was to itterate over all rows in the dataframe. I found it best to have all positions in one function and to loop over with range(1, len(df)). That way I could use df.at[i, "column"] for all my positions tasks. 
+This was the easies way to only enter price data in the dataframe at the exact row we entered or exited. 
+The other solutions, even though I could split it into separate functions, wrote marked price on all rows for entries as long as i was in the marked. I was a mess. 
+
+I also use the price of the open candle from first signal crossover, this I think makes the sens. But I need to think about that.
+
