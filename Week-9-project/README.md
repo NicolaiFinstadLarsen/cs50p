@@ -50,3 +50,20 @@ Next I need to calculate how much money the positions made or lost.
 
 ## Calculating PnL per trade
 
+This was a little tricky since I wanted to option to both viualize the per trade PnL, total PnL, short PnL, long PnL and equity curve later. I knew I had to append it to a list of some sort.
+
+The problems became evident when I appended my PnL for each loop no matter what I did in my code.
+
+In the end I found out that the line:
+    if short_entry and short_exit:
+        xxx
+
+was not the way to do it. 
+
+I then implemented the currenct lines of:
+    if long_entry is not None and long_exit is not None:
+
+I now have access to all the PnL numbers I need. I think...
+
+## Visualize
+
