@@ -1,6 +1,8 @@
 # Backtester
-#### Video Demo:  <URL HERE>
-#### Description:
+#### Video Demo:  <https://youtu.be/KfCYIEkqk4M>
+#### Description: 
+
+This is a backtester for a financial instrument. Its a simple one, a consept. The instrument needs to be in a csv file and the columns need to be ordered a specific way. Other than that there is functions for changing the number of contracts, the short SMA, long SMA and dollar per point of movement. 
 
 # What is it?
 
@@ -86,3 +88,7 @@ Ah, and I now realize I have not taken into consideration commissions. Well, its
 
 I am plotting something, and I figuered I could just use time, not date. But that did not work.
 I need to format my x axis.
+
+In the end I found a pandas function that I could use to both format a column to include both date and the time of day, aswell as format the order of the date and time, and fill the time to always have 4 digits. 
+
+# Thats it

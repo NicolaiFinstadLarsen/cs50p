@@ -20,6 +20,7 @@ def format_df(file):
     df = pd.read_csv(file, names=["contract", "date", "time", "open", 
                                                 "high", "low", "close", "no_need", 
                                                 "volume", "equity"])
+    df["date_and_time"] = pd.to_datetime(df["date"].astype(str) + df["time"].astype(str).str.zfill(4), format="%Y%m%d%H%M")
     df = df.drop(columns="no_need")
 
     return df
@@ -141,8 +142,10 @@ def visualisation(df, long_pnl, short_pnl, long_total, short_total, grand_total,
     print(f"{grand_total=}")
     print(f"{equity=}")
 
-    plt.plot(df["time"], df["equity"])
+    plt.plot(df["date_and_time"], df["equity"])
     plt.title("Equity curve")
+    plt.tight_layout()
+    plt.xticks(rotation=45)
     plt.show()
 
 
